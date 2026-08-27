@@ -33,6 +33,10 @@ Os componentes resolvem estilo nesta ordem:
 
 ## Catálogo
 
+O Dashbook publicado está disponível em:
+
+https://pakitec.github.io/pakitec-flutter-components/
+
 ```sh
 cd example
 flutter run -d chrome
@@ -40,3 +44,9 @@ flutter run -d chrome
 
 O Dashbook permite alternar entre Nimbus Light e Nimbus Dark pela barra de
 ferramentas.
+
+## Licença
+
+O repositório é público. A licença de uso comunitário ainda precisa ser
+formalmente definida pela Pakitec antes da distribuição fora dos projetos
+autorizados.
