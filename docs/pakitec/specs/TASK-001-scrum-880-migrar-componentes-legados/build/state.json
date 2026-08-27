@@ -1,0 +1,193 @@
+{
+  "version": "1.0.0",
+  "mode": "orchestration",
+  "issueKey": "SCRUM-880",
+  "taskDirectory": "/Volumes/External HD/Projetos/pakitec/pakitec-flutter-components/docs/pakitec/specs/TASK-001-scrum-880-migrar-componentes-legados",
+  "projectPath": "/Volumes/External HD/Projetos/pakitec/pakitec-flutter-components",
+  "createdAt": "2026-08-27T17:04:47.791Z",
+  "updatedAt": "2026-08-27T17:18:31.546Z",
+  "currentPhase": "release",
+  "bugCycles": 0,
+  "maxBugCycles": 3,
+  "phases": {
+    "lt_planning": {
+      "phaseId": "lt_planning",
+      "label": "SDD Orquestracao",
+      "roles": [
+        "sdd-orchestrator"
+      ],
+      "jiraSubtasks": {
+        "Spec": "SCRUM-881",
+        "Plan": "SCRUM-882"
+      },
+      "status": "done",
+      "startedAt": "2026-08-27T17:04:58.234Z",
+      "completedAt": "2026-08-27T17:05:59.791Z",
+      "evidence": "Spec aprovada com oito criterios de aceite; plano atualizado com componentes, dependencias, Dashbook, testes e riscos; pesquisa registra PakiSelect e PakiDivider horizontal/vertical; projeto Jira e repositorio confirmados.",
+      "blockers": []
+    },
+    "dev_implementation": {
+      "phaseId": "dev_implementation",
+      "label": "SDD Implementacao",
+      "roles": [
+        "sdd-implementer"
+      ],
+      "jiraSubtasks": {
+        "Implementation": "SCRUM-883"
+      },
+      "status": "done",
+      "startedAt": "2026-08-27T17:06:09.786Z",
+      "completedAt": "2026-08-27T17:16:14.367Z",
+      "evidence": "Implementação concluída: todos os widgets públicos legados possuem equivalente temável; PakiComboField virou PakiSelect; PakiDivider oferece horizontal e vertical; editor usa Flutter Quill; barrel, README, changelog e Dashbook completo atualizados. dart format e flutter analyze sem issues; 15 testes do pacote aprovados; análise e teste do exemplo aprovados; build web release concluído.",
+      "blockers": []
+    },
+    "qa_validation": {
+      "phaseId": "qa_validation",
+      "label": "SDD QA Validacao",
+      "roles": [
+        "sdd-qa-reviewer"
+      ],
+      "jiraSubtasks": {
+        "Tests": "SCRUM-884"
+      },
+      "status": "done",
+      "startedAt": "2026-08-27T17:16:22.746Z",
+      "completedAt": "2026-08-27T17:17:40.833Z",
+      "evidence": "QA aprovado sem bugs: flutter analyze sem issues; 15 testes do package aprovados; example/flutter analyze e example/flutter test aprovados; build web release aprovado; superfície local respondeu HTTP 200 e evidência foi registrada no SCRUM-884. Todos os critérios de aceite foram conferidos. O validador estrutural foi executado e retornou apenas falsos positivos por tratar package Flutter como aplicativo (lib/main.dart/android/ios/assets e lib/src), registrados em tasks.md.",
+      "blockers": []
+    },
+    "lt_review": {
+      "phaseId": "lt_review",
+      "label": "SDD Revisao Constitucional",
+      "roles": [
+        "sdd-constitution"
+      ],
+      "jiraSubtasks": {
+        "Review/Release": "SCRUM-885"
+      },
+      "status": "done",
+      "startedAt": "2026-08-27T17:17:49.638Z",
+      "completedAt": "2026-08-27T17:18:23.201Z",
+      "evidence": "Revisão constitucional aprovada: implementação preserva estrutura de package Flutter; UI usa ThemeData ativo e propriedades explícitas; Nimbus Light/Dark permanecem referências sem acoplamento; consulta de CEP e ações externas são injetadas; API pública está centralizada no barrel; git diff --check passou. Constituição atualizada com vínculo Jira Pakitec/SCRUM e decisões arquiteturais aprovadas.",
+      "blockers": []
+    },
+    "release": {
+      "phaseId": "release",
+      "label": "SDD Release",
+      "roles": [
+        "sdd-planner"
+      ],
+      "jiraSubtasks": {
+        "Review/Release": "SCRUM-885"
+      },
+      "status": "in_progress",
+      "startedAt": "2026-08-27T17:18:29.542Z",
+      "completedAt": null,
+      "evidence": "",
+      "blockers": []
+    }
+  },
+  "subtasks": {
+    "planned": {
+      "spec": "SCRUM-881",
+      "plan": "SCRUM-882",
+      "implementation": "SCRUM-883",
+      "tests": "SCRUM-884",
+      "reviewRelease": "SCRUM-885"
+    },
+    "role": {
+      "sdd-orchestrator": null,
+      "sdd-implementer": null,
+      "sdd-qa-reviewer": null,
+      "sdd-constitution": null,
+      "sdd-planner": null
+    },
+    "source": "planned"
+  },
+  "history": [
+    {
+      "timestamp": "2026-08-27T17:04:47.791Z",
+      "action": "workflow_created",
+      "phase": "lt_planning",
+      "detail": "Workflow de build criado. Planejamento existente reutilizado; fase inicial: SDD Orquestracao com subtarefas Spec/Plan."
+    },
+    {
+      "timestamp": "2026-08-27T17:04:58.234Z",
+      "action": "phase_started",
+      "phase": "lt_planning",
+      "detail": "SDD Orquestracao iniciado."
+    },
+    {
+      "timestamp": "2026-08-27T17:05:59.791Z",
+      "action": "phase_finished",
+      "phase": "lt_planning",
+      "detail": "SDD Orquestracao concluida. Evidencia registrada."
+    },
+    {
+      "timestamp": "2026-08-27T17:06:04.185Z",
+      "action": "phase_advanced",
+      "phase": "dev_implementation",
+      "detail": "Workflow avancou para SDD Implementacao."
+    },
+    {
+      "timestamp": "2026-08-27T17:06:09.786Z",
+      "action": "phase_started",
+      "phase": "dev_implementation",
+      "detail": "SDD Implementacao iniciado."
+    },
+    {
+      "timestamp": "2026-08-27T17:16:14.367Z",
+      "action": "phase_finished",
+      "phase": "dev_implementation",
+      "detail": "SDD Implementacao concluida. Evidencia registrada."
+    },
+    {
+      "timestamp": "2026-08-27T17:16:16.371Z",
+      "action": "phase_advanced",
+      "phase": "qa_validation",
+      "detail": "Workflow avancou para SDD QA Validacao."
+    },
+    {
+      "timestamp": "2026-08-27T17:16:22.746Z",
+      "action": "phase_started",
+      "phase": "qa_validation",
+      "detail": "SDD QA Validacao iniciado."
+    },
+    {
+      "timestamp": "2026-08-27T17:17:40.833Z",
+      "action": "phase_finished",
+      "phase": "qa_validation",
+      "detail": "SDD QA Validacao concluida. Evidencia registrada."
+    },
+    {
+      "timestamp": "2026-08-27T17:17:43.008Z",
+      "action": "phase_advanced",
+      "phase": "lt_review",
+      "detail": "Workflow avancou para SDD Revisao Constitucional."
+    },
+    {
+      "timestamp": "2026-08-27T17:17:49.638Z",
+      "action": "phase_started",
+      "phase": "lt_review",
+      "detail": "SDD Revisao Constitucional iniciado."
+    },
+    {
+      "timestamp": "2026-08-27T17:18:23.201Z",
+      "action": "phase_finished",
+      "phase": "lt_review",
+      "detail": "SDD Revisao Constitucional concluida. Evidencia registrada."
+    },
+    {
+      "timestamp": "2026-08-27T17:18:23.201Z",
+      "action": "phase_advanced",
+      "phase": "release",
+      "detail": "Workflow avancou para SDD Release."
+    },
+    {
+      "timestamp": "2026-08-27T17:18:29.542Z",
+      "action": "phase_started",
+      "phase": "release",
+      "detail": "SDD Release iniciado."
+    }
+  ]
+}

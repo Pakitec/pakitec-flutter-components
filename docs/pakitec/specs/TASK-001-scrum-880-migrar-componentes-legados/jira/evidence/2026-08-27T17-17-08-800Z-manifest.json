@@ -1,0 +1,23 @@
+{
+  "projectPath": "/Volumes/External HD/Projetos/pakitec/pakitec-flutter-components",
+  "taskDirectory": "/Volumes/External HD/Projetos/pakitec/pakitec-flutter-components/docs/pakitec/specs/TASK-001-scrum-880-migrar-componentes-legados",
+  "issueKey": "SCRUM-884",
+  "detection": {
+    "detected": false,
+    "reason": "Nenhuma superficie Flutter Web, Angular, React/Vite ou Swagger detectada.",
+    "commands": [],
+    "urls": []
+  },
+  "commandsAttempted": [],
+  "urlsChecked": [
+    {
+      "url": "http://127.0.0.1:8088",
+      "ok": true,
+      "status": 200
+    }
+  ],
+  "screenshots": [],
+  "warnings": [
+    "Playwright nao esta disponivel; screenshots automaticos foram pulados."
+  ]
+}

@@ -1,5 +1,6 @@
 import 'package:dashbook/dashbook.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:pakitec_flutter_components/pakitec_flutter_components.dart';
 
 void main() {
@@ -7,115 +8,243 @@ void main() {
     title: 'Pakitec Flutter Components',
     light: PakitecThemes.nimbusLight(),
     dark: PakitecThemes.nimbusDark(),
+    localizationsDelegates: FlutterQuillLocalizations.localizationsDelegates,
+    supportedLocales: FlutterQuillLocalizations.supportedLocales,
   );
 
-  dashbook.storiesOf('Foundations').add('Nimbus palette', (_) {
-    return const _CatalogPage(child: _NimbusPalette());
-  });
+  dashbook
+      .storiesOf('Foundations')
+      .add('Nimbus palette', (_) => const _Page(child: _NimbusPalette()));
 
-  dashbook.storiesOf('PakiButton').add('Variants', (context) {
+  dashbook.storiesOf('Actions').add('Buttons', (context) {
     final loading = context.boolProperty('Loading', false);
-    final enabled = context.boolProperty('Enabled', true);
-
-    return _CatalogPage(
+    return _Page(
       child: Wrap(
         spacing: 12,
         runSpacing: 12,
         children: [
           for (final variant in PakiButtonVariant.values)
             PakiButton(
-              label: _buttonLabel(variant),
+              label: variant.name,
               icon: variant == PakiButtonVariant.primary ? Icons.add : null,
               variant: variant,
               isLoading: loading,
-              onPressed: enabled ? () {} : null,
+              onPressed: () {},
             ),
+          PakiPrintButton(onPressed: () {}),
+          PakiFloatingActionButton(
+            icon: const Icon(Icons.add),
+            tooltip: 'Adicionar',
+            onPressed: () {},
+          ),
         ],
       ),
     );
   });
 
-  dashbook.storiesOf('PakiBadge').add('Semantic variants', (_) {
-    return const _CatalogPage(
+  dashbook.storiesOf('Feedback').add('Status, badges and loading', (_) {
+    return const _Page(
       child: Wrap(
-        spacing: 10,
-        runSpacing: 10,
+        spacing: 16,
+        runSpacing: 16,
+        crossAxisAlignment: WrapCrossAlignment.center,
         children: [
-          PakiBadge(label: 'Neutral'),
           PakiBadge(label: 'Novo', variant: PakiBadgeVariant.accent),
           PakiBadge(label: 'Ativo', variant: PakiBadgeVariant.success),
           PakiBadge(label: 'Pendente', variant: PakiBadgeVariant.warning),
           PakiBadge(label: 'Erro', variant: PakiBadgeVariant.error),
-          PakiBadge(label: 'Informativo', variant: PakiBadgeVariant.info),
+          PakiStatusIndicator(status: PakiStatus.success, label: 'Online'),
+          PakiStatusIndicator(status: PakiStatus.warning, label: 'Atenção'),
+          PakiLoadingIndicator(message: 'Carregando'),
+          PakiSkeleton(width: 180, height: 44),
         ],
       ),
     );
   });
 
-  dashbook.storiesOf('PakiCard').add('Interactive', (_) {
-    return _CatalogPage(
+  dashbook.storiesOf('Forms').add('Inputs and selectors', (context) {
+    final enabled = context.boolProperty('Enabled', true);
+    return _Page(
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 420),
-        child: PakiCard(
-          onTap: () {},
-          child: const Row(
-            children: [
-              PakiBadge(label: 'Ativo', variant: PakiBadgeVariant.success),
-              SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      'Sincronização ativa',
-                      style: TextStyle(fontWeight: FontWeight.w700),
-                    ),
-                    SizedBox(height: 4),
-                    Text('Última atualização há 2 min'),
-                  ],
-                ),
+        constraints: const BoxConstraints(maxWidth: 520),
+        child: Column(
+          spacing: 16,
+          children: [
+            PakiInputField(label: 'Nome', enabled: enabled),
+            PakiSelect<String>(
+              label: 'Cliente',
+              items: const ['Nimbus', 'Amora', 'Joe'],
+              itemLabel: (item) => item,
+              searchable: true,
+              enabled: enabled,
+              onChanged: (_) {},
+            ),
+            PakiDateField(label: 'Data', enabled: enabled, onChanged: (_) {}),
+            PakiZipCodeField<String>(
+              enabled: enabled,
+              lookup: (zip) async => zip,
+              onFound: (_) {},
+            ),
+            Builder(
+              builder: (context) => PakiColorPicker(
+                value: Theme.of(context).colorScheme.primary,
+                enabled: enabled,
+                onChanged: (_) {},
               ),
-              Icon(Icons.chevron_right),
-            ],
-          ),
+            ),
+            PakiCheckbox(
+              value: true,
+              label: const Text('Aceito os termos'),
+              onChanged: (_) {},
+              enabled: enabled,
+            ),
+          ],
         ),
       ),
     );
   });
 
-  dashbook.storiesOf('PakiInputField').add('States', (context) {
-    final enabled = context.boolProperty('Enabled', true);
-    final password = context.boolProperty('Password', false);
-
-    return _CatalogPage(
+  dashbook.storiesOf('Content').add('Card, dividers and empty state', (_) {
+    return _Page(
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 420),
-        child: PakiInputField(
-          label: password ? 'Senha' : 'E-mail corporativo',
-          hint: password ? 'Digite sua senha' : 'nome@empresa.com',
-          helperText: 'Texto de apoio opcional',
-          prefixIcon: password ? Icons.lock_outline : Icons.email_outlined,
-          obscureText: password,
-          enabled: enabled,
+        constraints: const BoxConstraints(maxWidth: 520),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const PakiCard(child: Text('Conteúdo em uma superfície Nimbus')),
+            const SizedBox(height: 20),
+            const PakiDivider.horizontal(),
+            const SizedBox(height: 20),
+            SizedBox(
+              height: 80,
+              child: Row(
+                children: [
+                  const Expanded(child: Text('Esquerda')),
+                  const PakiDivider.vertical(),
+                  const Expanded(child: Text('Direita')),
+                ],
+              ),
+            ),
+            const PakiImageBackground(message: 'Nenhum registro encontrado'),
+          ],
         ),
       ),
+    );
+  });
+
+  dashbook.storiesOf('Content').add('Editable list', (_) {
+    return _Page(
+      child: SizedBox(
+        width: 520,
+        height: 260,
+        child: PakiEditListView(
+          children: [
+            for (var index = 1; index <= 4; index++)
+              ListTile(
+                title: Text('Item $index'),
+                trailing: const Icon(Icons.edit_outlined),
+              ),
+          ],
+        ),
+      ),
+    );
+  });
+
+  dashbook
+      .storiesOf('Rich text')
+      .add('Editor', (_) => const _Page(child: _RichTextStory()));
+
+  dashbook.storiesOf('Overlays').add('Dialogs and snackbars', (_) {
+    return _Page(
+      child: Builder(
+        builder: (context) => Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          children: [
+            PakiButton(
+              label: 'Perguntar',
+              onPressed: () => showPakiQuestionDialog(
+                context: context,
+                message: 'Deseja continuar?',
+              ),
+            ),
+            PakiButton(
+              label: 'SnackBar',
+              variant: PakiButtonVariant.secondary,
+              onPressed: () => showPakiSnackBar(
+                context: context,
+                message: 'Operação concluída',
+              ),
+            ),
+            PakiButton(
+              label: 'Erro',
+              variant: PakiButtonVariant.destructive,
+              onPressed: () => showPakiErrorSnackBar(
+                context: context,
+                message: 'Não foi possível salvar',
+              ),
+            ),
+            PakiButton(
+              label: 'Modal global',
+              variant: PakiButtonVariant.outlined,
+              onPressed: () => showPakiGlobalModal(
+                context: context,
+                title: 'Atenção',
+                message: 'Revise os dados antes de prosseguir.',
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  });
+
+  dashbook.storiesOf('Layout').add('Scaffold', (_) {
+    return PakiScaffold(
+      appBar: AppBar(title: const Text('PakiScaffold')),
+      padding: const EdgeInsets.all(24),
+      floatingActionButton: PakiFloatingActionButton(
+        icon: const Icon(Icons.add),
+        onPressed: () {},
+      ),
+      body: const PakiCard(child: Text('Conteúdo da página')),
     );
   });
 
   runApp(dashbook);
 }
 
-String _buttonLabel(PakiButtonVariant variant) => switch (variant) {
-  PakiButtonVariant.primary => 'Criar projeto',
-  PakiButtonVariant.secondary => 'Ver detalhes',
-  PakiButtonVariant.outlined => 'Cancelar',
-  PakiButtonVariant.text => 'Saiba mais',
-  PakiButtonVariant.destructive => 'Excluir',
-};
+class _RichTextStory extends StatefulWidget {
+  const _RichTextStory();
 
-class _CatalogPage extends StatelessWidget {
-  const _CatalogPage({required this.child});
+  @override
+  State<_RichTextStory> createState() => _RichTextStoryState();
+}
+
+class _RichTextStoryState extends State<_RichTextStory> {
+  late final QuillController _controller = QuillController.basic();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 720),
+      child: PakiRichTextField(
+        controller: _controller,
+        label: 'Descrição',
+        hint: 'Escreva e formate o conteúdo',
+      ),
+    );
+  }
+}
+
+class _Page extends StatelessWidget {
+  const _Page({required this.child});
 
   final Widget child;
 
