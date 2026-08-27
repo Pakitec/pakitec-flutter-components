@@ -29,7 +29,7 @@
 - [x] T022 Comparar o que foi feito com `Visao do Usuario` e registrar se o comportamento bate com o pedido.
 - [x] T023 Conferir que nenhuma `Regra de Negocio` foi violada.
 - [x] T024 Executar `pakitec_validate_project_structure` para este projeto.
-- [ ] T025 Registrar no Jira arquivos alterados, validacoes, comparacao com `Visao do Usuario`, resultado de `pakitec_validate_project_structure` e pendencias.
+- [x] T025 Registrar no Jira arquivos alterados, validacoes, comparacao com `Visao do Usuario`, resultado de `pakitec_validate_project_structure` e pendencias.
 
 ## Notes
 
