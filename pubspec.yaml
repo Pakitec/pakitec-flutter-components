@@ -1,0 +1,25 @@
+name: pakitec_flutter_components
+description: Componentes Flutter oficiais da Pakitec, independentes de tema.
+version: 0.1.0
+homepage: https://www.pakitec.com.br
+publish_to: none
+
+environment:
+  sdk: '>=3.10.0 <4.0.0'
+  flutter: '>=3.38.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  pakitec_themes:
+    git:
+      url: https://github.com/Pakitec/pakitec-themes.git
+      ref: v1.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true

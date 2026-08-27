@@ -1,0 +1,22 @@
+name: pakitec_flutter_components_catalog
+description: Catálogo visual dos componentes Flutter da Pakitec.
+publish_to: none
+version: 0.1.0+1
+
+environment:
+  sdk: '>=3.10.0 <4.0.0'
+
+dependencies:
+  dashbook: ^0.1.17
+  flutter:
+    sdk: flutter
+  pakitec_flutter_components:
+    path: ..
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
