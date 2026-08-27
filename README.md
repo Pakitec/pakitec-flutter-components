@@ -10,7 +10,7 @@ dependencies:
   pakitec_flutter_components:
     git:
       url: https://github.com/Pakitec/pakitec-flutter-components.git
-      ref: v0.1.0
+      ref: v0.2.0
 ```
 
 ## Nimbus
@@ -44,6 +44,38 @@ flutter run -d chrome
 
 O Dashbook permite alternar entre Nimbus Light e Nimbus Dark pela barra de
 ferramentas.
+
+## Componentes
+
+O pacote cobre os componentes reutilizáveis do pacote legado com APIs
+orientadas a tema:
+
+- ações: `PakiButton`, `PakiPrintButton` e `PakiFloatingActionButton`;
+- formulários: `PakiInputField`, `PakiSelect`, `PakiDateField`,
+  `PakiZipCodeField`, `PakiColorPicker`, `PakiCheckbox` e
+  `PakiRichTextField`;
+- conteúdo e estrutura: `PakiCard`, `PakiBadge`, `PakiDivider`,
+  `PakiScaffold`, `PakiImageBackground` e `PakiEditListView`;
+- feedback: `PakiStatusIndicator`, `PakiLoadingIndicator`, `PakiSkeleton`,
+  dialogs, snackbars e modal global.
+
+### Migração do pacote legado
+
+| Legado | Novo pacote |
+| --- | --- |
+| `PakiComboField` | `PakiSelect` |
+| `PakiHorizontalDiv` | `PakiDivider.horizontal` |
+| `PakiVerticalDiv` | `PakiDivider.vertical` |
+| `PakiInputCalendar` | `PakiDateField` |
+| `PakiInputZipCode` | `PakiZipCodeField` |
+| `PakiIndicator` | `PakiStatusIndicator` |
+| `PakiTextField` | `PakiRichTextField` |
+| `PakiAddButton` | `PakiFloatingActionButton` |
+| `PakiSkeletonIndicator` | `PakiSkeleton` |
+| `PakiCompassIndicator` | `PakiLoadingIndicator` |
+
+`PakiZipCodeField` recebe a integração de consulta por callback, mantendo o
+pacote independente de um cliente HTTP específico.
 
 ## Licença
 
